@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+  .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .column {
+            width: 30%;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+</style>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+        <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 1</h2>
+            <div id="draggableText" class="draggable" draggable="true" ondragstart="drag(event)">
+               bootstrap
+            </div>
+            <div id="draggableText2" class="draggable" draggable="true" ondragstart="drag(event)">
+               html
+            </div>
+            <div id="draggableText3" class="draggable" draggable="true" ondragstart="drag(event)">
+                css
+            </div>
+        </div>
+        <div class="column" id="column2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 2</h2>
+        </div>
+        <div class="column" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 3</h2>
+        </div>
+    </div>
+
+</body>
+</html>
+

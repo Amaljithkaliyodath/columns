@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .site {
+            width: 30%;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .draggable {
+            margin-bottom: 10px;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-lg site" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 1</h2>
+            <div id="draggableText" class="draggable" draggable="true" ondragstart="drag(event)">
+               bootstrap
+            </div>
+            <div id="draggableText2" class="draggable" draggable="true" ondragstart="drag(event)">
+               html
+            </div>
+            <div id="draggableText3" class="draggable" draggable="true" ondragstart="drag(event)">
+                css
+            </div>
+        </div>
+        <div class="col-lg site" id="column2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 2</h2>
+        </div>
+        <div class="col-lg site" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>website 3</h2>
+        </div>
+    </div>
+
+ 
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(data);
+            var column = event.target;
+            column.appendChild(draggedElement);
+        }
+    </script>
+</body>
+
+</html>
